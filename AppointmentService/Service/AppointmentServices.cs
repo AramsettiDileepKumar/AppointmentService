@@ -136,9 +136,7 @@ namespace Service
                 existingAppointment.PatientName = patientName;
                 existingAppointment.PatientAge = request.PatientAge;
                 existingAppointment.Issue = request.Issue;
-
                 existingAppointment.AppointmentDate = request.AppointmentDate;
-
                 string sql = @" UPDATE APPOINTMENT SET PatientAge=@PatientAge, Issue = @Issue, BookedBy = @BookedBy, AppointmentDate = @AppointmentDate WHERE AppointmentId = @Appointmentid";
                 using (var connection = _context.CreateConnection())
                 {
