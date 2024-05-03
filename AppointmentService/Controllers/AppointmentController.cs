@@ -31,12 +31,12 @@ namespace AppointmentService.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message );
+                return Ok(new { Success = false, Message = $"An error occurred while Creating appointment: {ex.Message}" });
             }
         }
 
         [Authorize(Roles = "Patient")]
-        [HttpGet("GetByPatient")]
+        [HttpGet("getbypatient")]
         public async Task<IActionResult> GetAllAppointmentsByPatient()
         {
             try
@@ -47,7 +47,7 @@ namespace AppointmentService.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred while retrieving appointments by doctor: {ex.Message}");
+                return Ok( $"An error occurred while retrieving appointments by doctor: {ex.Message}");
             }
         }
 
@@ -63,7 +63,7 @@ namespace AppointmentService.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred while retrieving appointments by doctor: {ex.Message}");
+                return Ok( $"An error occurred while retrieving appointments by doctor: {ex.Message}");
             }
         }
 
@@ -79,7 +79,7 @@ namespace AppointmentService.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred while retrieving appointments by patient: {ex.Message}");
+                return Ok(new { Success = false, Message = $"An error occurred while retrieving appointments by patient: {ex.Message}" });
             }
         }
 
@@ -96,7 +96,7 @@ namespace AppointmentService.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return Ok(new { Success = false, Message = $"An error occurred while Updaing appointments by patient: {ex.Message}" });
             }
         }
         [Authorize(Roles = "Patient")]
@@ -110,8 +110,8 @@ namespace AppointmentService.Controllers
                 return Ok(new { Success = true, Message = "Appointment Cancelled successfully", Data = appointments });
             }
             catch (Exception ex)
-            { 
-                return StatusCode(500,ex.Message);
+            {
+                return Ok(new { Success = false, Message = $"An error occurred while Cancelling appointments by patient: {ex.Message}" });
             }
 
         }
@@ -126,7 +126,7 @@ namespace AppointmentService.Controllers
             }
             catch(Exception ex) 
             {
-                return StatusCode(500,ex.Message);
+                return Ok(new {Success=false,Message = $"An error occurred while Updating appointments by Doctor: {ex.Message}");
             }
         }
     }
